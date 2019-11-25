@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import AppBar from './components/AppBar';
 import * as serviceWorker from './serviceWorker';
-import Login from "./components/login";
 
 ReactDOM.render(<AppBar />, document.getElementById('root'));
 

@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -18,7 +19,7 @@ const styles = theme => ({
     },
 });
 
-class Users extends Component {
+class Invoices extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,7 +36,7 @@ class Users extends Component {
             <Container maxWidth="xs">
                 <Typography component="div">
                     <Box textAlign="center" m={1}>
-                        List of Users
+                        List of Invoices
                     </Box>
                 </Typography>
                 <List className={classes.root}>
@@ -69,4 +70,4 @@ class Users extends Component {
     }
 }
 
-export default withStyles(styles)(Users);
+export default withStyles(styles)(Invoices);

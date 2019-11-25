@@ -15,7 +15,7 @@ const styles = theme => ({
     },
 });
 
-class NewUser extends Component {
+class NewInvoice extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -32,7 +32,7 @@ class NewUser extends Component {
             <Container maxWidth="xs">
                 <Typography component="div">
                     <Box textAlign="center" m={1}>
-                        Create new vendor
+                        Create new invoice
                     </Box>
                 </Typography>
                 <form className={classes.form} noValidate>
@@ -41,10 +41,76 @@ class NewUser extends Component {
                         margin="normal"
                         required
                         fullWidth
-                        id="contractorName"
-                        label="Contractor Name"
-                        name="contractorName"
-                        autoComplete="contractorName"
+                        id="quantity"
+                        label="Quantity"
+                        name="quantity"
+                        autoComplete="quantity"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="description"
+                        label="Description"
+                        type="description"
+                        id="description"
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="rate"
+                        label="Rate"
+                        name="rate"
+                        autoComplete="rate"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="amount"
+                        label="Amount"
+                        type="amount"
+                        id="amount"
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="vat"
+                        label="Vat"
+                        name="vat"
+                        autoComplete="vat"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="total"
+                        label="Total"
+                        type="total"
+                        id="total"
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="contractRef"
+                        label="Contract Reference"
+                        name="contractRef"
+                        autoComplete="contractRef"
                         autoFocus
                     />
                     <TextField
@@ -63,21 +129,10 @@ class NewUser extends Component {
                         margin="normal"
                         required
                         fullWidth
-                        id="companyAdress"
-                        label="Company Adress"
-                        name="companyAdress"
-                        autoComplete="companyAdress"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="companyRegistrationNumber"
-                        label="Company Registration Number"
-                        type="companyRegistrationNumber"
-                        id="companyRegistrationNumber"
+                        name="pointOfContact"
+                        label="Point of Contact"
+                        type="pointOfContact"
+                        id="pointOfContact"
                         autoComplete="current-password"
                     />
                     <TextField
@@ -85,21 +140,10 @@ class NewUser extends Component {
                         margin="normal"
                         required
                         fullWidth
-                        id="vatId"
-                        label="Vat Id"
-                        name="vatId"
-                        autoComplete="vatId"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="phoneNumber"
-                        label="Phone Number"
-                        type="phoneNumber"
-                        id="phoneNumber"
+                        name="invoiceNumber"
+                        label="Invoice Number"
+                        type="invoiceNumber"
+                        id="invoiceNumber"
                         autoComplete="current-password"
                     />
                     <TextField
@@ -107,11 +151,11 @@ class NewUser extends Component {
                         margin="normal"
                         required
                         fullWidth
-                        id="dayRate"
-                        label="Day Rate"
-                        name="dayRate"
-                        autoComplete="dayRate"
-                        autoFocus
+                        name="invoiceDate"
+                        label="Invoice Date"
+                        type="invoiceDate"
+                        id="invoiceDate"
+                        autoComplete="current-password"
                     />
                     <TextField
                         variant="outlined"
@@ -135,105 +179,6 @@ class NewUser extends Component {
                         id="toDate"
                         autoComplete="current-password"
                     />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="contractRef"
-                        label="Contract Reference"
-                        type="contractRef"
-                        id="contractRef"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="contractDescription"
-                        label="Contract Description"
-                        type="contractDesription"
-                        id="contractDescription"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="accountName"
-                        label="Account Name"
-                        type="accountName"
-                        id="accountName"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="bankName"
-                        label="Bank Name"
-                        type="bankName"
-                        id="bankName"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="sortCode"
-                        label="Sort Code"
-                        type="sortCode"
-                        id="sortCode"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="accountNumber"
-                        label="Account Number"
-                        type="accountNumber"
-                        id="accountNumber"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="userName"
-                        label="User Name"
-                        type="userName"
-                        id="userName"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="email"
-                        label="User's email"
-                        type="email"
-                        id="email"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="userPassword"
-                        label="User Password"
-                        type="userPassword"
-                        id="userPassword"
-                        autoComplete="current-password"
-                    />
                     <Button
                         type="submit"
                         fullWidth
@@ -249,4 +194,4 @@ class NewUser extends Component {
     }
 }
 
-export default withStyles(styles)(NewUser);
+export default withStyles(styles)(NewInvoice);

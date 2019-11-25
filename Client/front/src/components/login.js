@@ -109,13 +109,6 @@ class Login extends Component {
                         >
                             Log  in
                         </Button>
-                        <Grid container justify="center">
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                     </form>
                 </div>
                 <Box mt={8}>
