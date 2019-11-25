@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import NewUser from './components/NewUser';
+import AppBar from './components/AppBar';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<NewUser />, document.getElementById('root'));
+ReactDOM.render(<AppBar />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
