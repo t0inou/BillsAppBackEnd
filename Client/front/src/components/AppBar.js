@@ -48,20 +48,21 @@ class AppBarComponent extends Component {
                             Invoice App
             </Typography>
                         <nav>
-                            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                            <NavLink activeClassName="active" to="/NewUser" className={classes.link} style={{ textDecoration: 'none' }}>
                                 Users
-            </Link>
-                            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+                            </NavLink>
+
+                            <NavLink activeClassName="active" to="/NewUser" className={classes.link} style={{ textDecoration: 'none' }}>
                                 Invoices
-            </Link>
-                            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                                <NavLink activeClassName="active" to="/NewUser">   New User</NavLink>
-                            </Link>
-                            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                                New Invoice
-            </Link>
+            </NavLink>
+
+                            <NavLink activeClassName="active" to="/NewUser" className={classes.link} style={{ textDecoration: 'none' }}>   New User</NavLink>
+
+
+                            <NavLink activeClassName="active" to="/NewUser" className={classes.link} style={{ textDecoration: 'none' }}>   New Invoice</NavLink>
+
                         </nav>
-                        <NavLink activeClassName="active" to="/login">   <Button color="primary" variant="outlined" className={classes.link}>
+                        <NavLink activeClassName="active" to="/login" className={classes.link} style={{ textDecoration: 'none' }}>  <Button color="primary" variant="outlined" className={classes.link}>
                             Login
                         </Button> </NavLink>
                     </Toolbar>
