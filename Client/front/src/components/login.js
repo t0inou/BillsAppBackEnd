@@ -6,8 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -47,17 +45,27 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            email: '',
+            password: '',
+            token: ''
         }
         this.logChange = this.logChange.bind(this);
+        this.Login = this.Login.bind(this);
     }
     componentDidMount() {
-        // let self = this;
-        // fetch('/users')
-        //     .then(res => res.json())
-        //     .then(members => self.setState({ members: members }));
     }
     logChange(e) {
-        // this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value });
+    }
+    Login() {
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            })
+        }).then(res => res.json())
+            .then(token => this.setState({ token: token }));
     }
     render() {
         const { classes } = this.props;
@@ -82,6 +90,7 @@ class Login extends Component {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={this.logChange}
                         />
                         <TextField
                             variant="outlined"
@@ -93,6 +102,7 @@ class Login extends Component {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={this.logChange}
                         />
                         <div className={classes.paper2}>
                             <FormControlLabel
@@ -106,6 +116,7 @@ class Login extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={this.Login}
                         >
                             Log  in
                         </Button>

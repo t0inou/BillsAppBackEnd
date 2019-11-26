@@ -2,24 +2,36 @@ const express = require('express');
 var mysql = require('mysql');
 var users = require('./routes/users');
 var invoices = require('./routes/invoices');
+var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
 
 const app = express();
 
-//Connexion to the database
-app.use(function (req, res, next) {
-    res.locals.connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'invoice'
-    });
-    res.locals.connection.connect();
-    next();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'invoice_final'
 });
 
-app.use('/users', users);
+connection.connect();
 
+//Connexion to the database
+// app.use(function (request, response, next) {
+//     response.locals.connection = mysql.createConnection({
+//         host: 'localhost',
+//         user: 'root',
+//         password: '',
+//         database: 'invoice_final'
+//     });
+//     response.locals.connection.connect();
+//     next();
+// });
+
+app.use('/users', users);
 app.use('/invoices', invoices);
 
 //Route test
@@ -28,25 +40,26 @@ app.get('/', function (req, res, next) {
 });
 
 //Route for logging in
-app.post('/login', function (req, res, next) {
-    var username = request.body.username;
+app.post('/login', function (request, response, next) {
+    var email = request.body.email;
     var password = request.body.password;
-    if (username && password) {
-        connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+    console.log(email);
+    console.log(password);
+    if (email && password) {
+        connection.query('SELECT * FROM vendor_master WHERE email_id = ? AND user_password = ?', [email, password], function (error, results, fields) {
             if (results.length > 0) {
                 response.redirect('/');
             } else {
-                response.send('Incorrect Username and/or Password');
+                response.send('Incorrect Email and/or Password');
             }
             response.end();
         });
     } else {
-        response.send('Please enter Username and Password');
+        response.send('Please enter Email and Password');
         response.end();
     }
-    res.sendStatus(200);
+    // response.sendStatus(200);
 })
-
 
 //Route for catching errors
 app.use(function (res, res, next) {
