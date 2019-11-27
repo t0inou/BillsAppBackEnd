@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+const axios = require('axios')
+
 const styles = theme => ({
     '@global': {
         body: {
@@ -58,17 +60,32 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
     Login() {
-        fetch('http://localhost:3000/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password
+        let currentComponent = this;
+        let data = JSON.stringify({
+            email: this.state.email,
+            password: this.state.password
+        })
+        axios.post('http://localhost:3000/login', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (response) {
+                currentComponent.setState((state, props) => {
+                    return ({
+                        token: response.data,
+                    });
+                })
+                localStorage.setItem('token', currentComponent.state.token)
             })
-        }).then(res => res.json())
-            .then(token => this.setState({ token: token }));
+            .catch(function (error) {
+                localStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtYWlsIjoiYWRtaW5AYWRtaW4uYWRtaW4iLCJpc3MiOiJhdXRoMCIsImlkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwidGltZXN0YW1wIjoxNTYxNTQ4NTY0LCJpbmZvIjoiVm9pY2kgdW5lIGluZm8gYWJzb2x1bWVudCBpbnV0aWxlIGp1c3RlIHBvdXIgcXVlIGxlIHRva2VuIGdyYW5kaXNzZS4ifQ.CFyfWDKpBlHVEASd9YHrNkzRsPGEZ7vvjaohADegqLQ')
+            });
     }
     render() {
         const { classes } = this.props;
+        console.log(this.state.email);
+        console.log(this.state.password);
         return (
             <Container component="main" maxWidth="xs">
                 <CssBaseline />

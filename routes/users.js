@@ -1,9 +1,10 @@
 var express = require('express');
+var mysql = require('mysql');
 var router = express.Router();
 
 //Route to get all users
 router.get('/', function (req, res, next) {
-    res.locals.connection.query('SELECT * from users', function (error, results) {
+    res.locals.connection.query('SELECT email_id, contractorName, phoneNumber, contractDescription from vendor_master', function (error, results) {
         if (error) throw error;
         res.send(JSON.stringify(results));
     });

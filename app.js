@@ -2,34 +2,26 @@ const express = require('express');
 var mysql = require('mysql');
 var users = require('./routes/users');
 var invoices = require('./routes/invoices');
-var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
+var cors = require('cors');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+app.use(cors());
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'invoice_final'
+app.use(function (req, res, next) {
+    res.locals.connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'invoice_final'
+    });
+    res.locals.connection.connect();
+    next();
 });
-
-connection.connect();
-
-//Connexion to the database
-// app.use(function (request, response, next) {
-//     response.locals.connection = mysql.createConnection({
-//         host: 'localhost',
-//         user: 'root',
-//         password: '',
-//         database: 'invoice_final'
-//     });
-//     response.locals.connection.connect();
-//     next();
-// });
 
 app.use('/users', users);
 app.use('/invoices', invoices);
@@ -46,7 +38,7 @@ app.post('/login', function (request, response, next) {
     console.log(email);
     console.log(password);
     if (email && password) {
-        connection.query('SELECT * FROM vendor_master WHERE email_id = ? AND user_password = ?', [email, password], function (error, results, fields) {
+        response.locals.connection.query('SELECT * FROM vendor_master WHERE email_id = ? AND user_password = ?', [email, password], function (error, results, fields) {
             if (results.length > 0) {
                 response.redirect('/');
             } else {
@@ -62,12 +54,10 @@ app.post('/login', function (request, response, next) {
 })
 
 //Route for catching errors
-app.use(function (res, res, next) {
-    var err = new Error('Not Found ... BUG');
-    err.status = 404;
-    next(err);
-});
 
 app.listen(3000, function (req, res, next) {
     console.log('app listening on port 3000')
 });
+
+
+module.exports = app;
